@@ -14,6 +14,8 @@ const Peer = window.Peer;
    const meta = document.getElementById('js-meta');
    const sdkSrc = document.querySelector('script[src*=skyway]');
 
+   let peerIdTmp = null;
+
    meta.innerText = `
      UA: ${navigator.userAgent}
      SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
@@ -116,6 +118,15 @@ const Peer = window.Peer;
        localText.value = '';
      }
    });
+
+   volumeSlider.addEventListener("change", e => {
+  const volume = e.target.value;
+  console.log("peerIDは:", peerIdTmp);
+  const remoteVideo = remoteVideos.querySelector(
+    `[data-peer-id="${peerIdTmp}"]`
+  );
+  remoteVideo.volume = volume / 100;
+});
 
    peer.on('error', console.error);
  })();
