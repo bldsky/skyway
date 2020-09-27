@@ -21,6 +21,7 @@ const Peer = window.Peer;
   let peerIdArray = [];
   let peerIdTmp = null;
   let peerVolume = [];
+  let typeTmp = null;
 
 
   meta.innerText = `
@@ -80,7 +81,8 @@ const Peer = window.Peer;
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const newVideo = document.createElement('video');
-      console.log("typeof:", typeof newVideo);
+      typeTmp = typeof newVideo;
+      console.log("tnnypeof:", typeof newVideo);
       audioContext = new (window.AudioContext || window.webkitAudioContext);
       sourceAC = audioContext.createMediaStreamSource(stream);
       audioDestination = audioContext.createMediaStreamDestination();
@@ -141,6 +143,7 @@ const Peer = window.Peer;
 
   console.log("gain:", gainNode.gain.value);
   console.log("volume:", volume);
+  console.log("tttypeof:", typeTmp);
 });
   });
 
