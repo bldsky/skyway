@@ -14,6 +14,9 @@ const Peer = window.Peer;
    const meta = document.getElementById('js-meta');
    const sdkSrc = document.querySelector('script[src*=skyway]');
 
+   const volumeSlider = document.getElementById("volume");
+
+
    let peerIdTmp = null;
 
    meta.innerText = `
