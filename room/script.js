@@ -77,6 +77,7 @@ const Peer = window.Peer;
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const newVideo = document.createElement('video');
+      console.log(typeof newVideo);
       audioContext = new (window.AudioContext || window.webkitAudioContext);
       sourceAC = audioContext.createMediaStreamSource(stream);
       audioDestination = audioContext.createMediaStreamDestination();
