@@ -12,6 +12,7 @@ const Peer = window.Peer;
   const messages = document.getElementById('js-messages');
   const meta = document.getElementById('js-meta');
   const sdkSrc = document.querySelector('script[src*=skyway]');
+  const volumeSlider = document.getElementById("volume");
 
   let audioContext = null;
   let sourceAC = null;
