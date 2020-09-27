@@ -71,7 +71,7 @@ const Peer = window.Peer;
     });
     room.on('peerJoin', peerId => {
       messages.textContent += `=== ${peerId} joined ===\n`;
-      peerIdArray.push(peerId);
+      //peerIdArray.push(peerId);
     });
 
     // Render remote stream for new peer join in the room
