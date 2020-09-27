@@ -75,6 +75,7 @@ const Peer = window.Peer;
     room.on('peerJoin', peerId => {
       messages.textContent += `=== ${peerId} joined ===\n`;
       peerVolume.push(0.5);
+      peerIdTmp = peerId;
       //peerIdArray.push(peerId);
     });
 
@@ -140,7 +141,18 @@ const Peer = window.Peer;
     volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
   //gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
-  peerVolume[0] = volume / 100;
+  const remoteVideo = remoteVideos.querySelector(
+    `[data-peer-id="${peerIdTmp}"]`
+  );
+  audioContext = new (window.AudioContext || window.webkitAudioContext);
+  sourceAC = audioContext.createMediaStreamSource(remoteVideo.srcObject);
+  audioDestination = audioContext.createMediaStreamDestination();
+  gainNode = audioContext.createGain();
+  sourceAC.connect(gainNode);
+  gainNode.connect(audioDestination);
+  gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+  remoteVideo.srcObject = audioDestination.stream;
+  //peerVolume[0] = volume / 100;
   console.log("gain:", gainNode.gain.value);
   console.log("volume:", volume);
   console.log("tttypeof:", typeTmp);
