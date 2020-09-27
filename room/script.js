@@ -141,10 +141,12 @@ const Peer = window.Peer;
     volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
   //gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+  console.log("peerIDは:", peerIdTmp);
   const remoteVideo = remoteVideos.querySelector(
     `[data-peer-id="${peerIdTmp}"]`
   );
   audioContext = new (window.AudioContext || window.webkitAudioContext);
+  console.log("srcObjectは:", remoteVideo.srcObject);
   sourceAC = audioContext.createMediaStreamSource(remoteVideo.srcObject);
   audioDestination = audioContext.createMediaStreamDestination();
   gainNode = audioContext.createGain();
