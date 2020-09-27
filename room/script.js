@@ -126,6 +126,12 @@ const Peer = window.Peer;
       messages.textContent += `${peer.id}: ${localText.value}\n`;
       localText.value = '';
     }
+
+    volumeSlider.addEventListener("change", e => {
+  const volume = e.target.value;
+  gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+  console.log("gain:", gainNode.gain.value);
+});
   });
 
   peer.on('error', console.error);
