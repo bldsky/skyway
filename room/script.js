@@ -139,7 +139,7 @@ const Peer = window.Peer;
 
     volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
-  gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+  //gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
   peerVolume[0] = volume / 100;
   console.log("gain:", gainNode.gain.value);
   console.log("volume:", volume);
