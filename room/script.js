@@ -71,7 +71,6 @@ const Peer = window.Peer;
      });
      room.on('peerJoin', peerId => {
        messages.textContent += `=== ${peerId} joined ===\n`;
-       peerIdArray.push(peerId);
      });
 
      // Render remote stream for new peer join in the room
@@ -82,6 +81,7 @@ const Peer = window.Peer;
        // mark peerId to find it later at peerLeave event
        newVideo.setAttribute('data-peer-id', stream.peerId);
        remoteVideos.append(newVideo);
+       peerIdArray.push(stream.peerId);
        await newVideo.play().catch(console.error);
      });
 
