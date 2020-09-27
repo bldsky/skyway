@@ -83,7 +83,7 @@ const Peer = window.Peer;
       gainNode = audioContext.createGain();
       sourceAC.connect(gainNode);
       gainNode.connect(audioDestination);
-      gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(0.01, audioContext.currentTime);
       newVideo.srcObject = audioDestination.stream;
       newVideo.playsInline = true;
       // mark peerId to find it later at peerLeave event
