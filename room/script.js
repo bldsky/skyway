@@ -13,6 +13,12 @@ const Peer = window.Peer;
   const meta = document.getElementById('js-meta');
   const sdkSrc = document.querySelector('script[src*=skyway]');
 
+  let audioContext = null;
+  let sourceAC = null;
+  let audioDestination = null;
+  let gainNode = null;
+
+
   meta.innerText = `
     UA: ${navigator.userAgent}
     SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
@@ -68,7 +74,13 @@ const Peer = window.Peer;
     // Render remote stream for new peer join in the room
     room.on('stream', async stream => {
       const newVideo = document.createElement('video');
-      newVideo.srcObject = stream;
+      audioContext = new (window.AudioContext || window.webkitAudioContext);
+      sourceAC = audioContext.createMediaStreamSource(stream);
+      audioDestination = audioContext.createMediaStreamDestination();
+      gainNode = audioContext.createGain();
+      sourceAC.connect(gainNode);
+      gainNode.connect(audioDestination);
+      newVideo.srcObject = audioDestination.stream;
       newVideo.playsInline = true;
       // mark peerId to find it later at peerLeave event
       newVideo.setAttribute('data-peer-id', stream.peerId);
