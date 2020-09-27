@@ -132,6 +132,7 @@ const Peer = window.Peer;
   const volume = e.target.value;
   gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
   console.log("gain:", gainNode.gain.value);
+  console.log("volume:", volume);
 });
   });
 
