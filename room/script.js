@@ -15,9 +15,11 @@ const Peer = window.Peer;
    const sdkSrc = document.querySelector('script[src*=skyway]');
 
    const volumeSlider = document.getElementById("volume");
+   const volumeSlider2 = document.getElementById("volume2");
 
 
-   let peerIdTmp = null;
+
+   let peerIdArray = [];
 
    meta.innerText = `
      UA: ${navigator.userAgent}
@@ -69,7 +71,7 @@ const Peer = window.Peer;
      });
      room.on('peerJoin', peerId => {
        messages.textContent += `=== ${peerId} joined ===\n`;
-       peerIdTmp = peerId;
+       peerIdArray.push(peerId);
      });
 
      // Render remote stream for new peer join in the room
@@ -125,11 +127,20 @@ const Peer = window.Peer;
 
    volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
-  console.log("peerIDは:", peerIdTmp);
+  console.log("peerIDは:", peerIdArray[0]);
   const remoteVideo = remoteVideos.querySelector(
-    `[data-peer-id="${peerIdTmp}"]`
+    `[data-peer-id="${peerIdArray[0]}"]`
   );
   remoteVideo.volume = volume / 100;
+});
+
+  volumeSlider2.addEventListener("change", e => {
+const volume = e.target.value;
+console.log("peerIDは:", peerIdArray[1]);
+const remoteVideo = remoteVideos.querySelector(
+ `[data-peer-id="${peerIdArray[1]}"]`
+);
+remoteVideo.volume = volume / 100;
 });
 
    peer.on('error', console.error);
