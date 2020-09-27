@@ -18,6 +18,7 @@ const Peer = window.Peer;
   let sourceAC = null;
   let audioDestination = null;
   let gainNode = null;
+  let peerIdArray = [];
 
 
   meta.innerText = `
@@ -70,6 +71,7 @@ const Peer = window.Peer;
     });
     room.on('peerJoin', peerId => {
       messages.textContent += `=== ${peerId} joined ===\n`;
+      peerIdArray.push(peerId);
     });
 
     // Render remote stream for new peer join in the room
@@ -131,6 +133,13 @@ const Peer = window.Peer;
     volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
   gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+  const remoteVideoV = remoteVideos.querySelector(
+    `[data-peer-id="${peerIdArray[0]}"]`
+  );
+  sourceAC.connect(gainNode);
+  gainNode.connect(audioDestination);
+  remoteVideoV.srcObject.getTracks().forEach(track => track.stop());
+  remoteVideoV.srcObject = audioDestination.stream;;
   console.log("gain:", gainNode.gain.value);
   console.log("volume:", volume);
 });
