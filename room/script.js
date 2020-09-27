@@ -1,166 +1,110 @@
+
 const Peer = window.Peer;
 
-(async function main() {
-  const localVideo = document.getElementById('js-local-stream');
-  const joinTrigger = document.getElementById('js-join-trigger');
-  const leaveTrigger = document.getElementById('js-leave-trigger');
-  const remoteVideos = document.getElementById('js-remote-streams');
-  const roomId = document.getElementById('js-room-id');
-  const roomMode = document.getElementById('js-room-mode');
-  const localText = document.getElementById('js-local-text');
-  const sendTrigger = document.getElementById('js-send-trigger');
-  const messages = document.getElementById('js-messages');
-  const meta = document.getElementById('js-meta');
-  const sdkSrc = document.querySelector('script[src*=skyway]');
-  const volumeSlider = document.getElementById("volume");
+ (async function main() {
+   const localId = document.getElementById('js-local-id');
+   const localText = document.getElementById('js-local-text');
+   const connectTrigger = document.getElementById('js-connect-trigger');
+   const closeTrigger = document.getElementById('js-close-trigger');
+   const sendTrigger = document.getElementById('js-send-trigger');
+   const remoteId = document.getElementById('js-remote-id');
+   const messages = document.getElementById('js-messages');
+   const meta = document.getElementById('js-meta');
+   const sdkSrc = document.querySelector('script[src*=skyway]');
 
-  let audioContext = null;
-  let sourceAC = null;
-  let audioDestination = null;
-  let gainNode = null;
-  let peerIdArray = [];
-  let peerIdTmp = null;
-  let peerVolume = [];
-  let typeTmp = null;
+   let peerIdTmp = null;
 
+   meta.innerText = `
+     UA: ${navigator.userAgent}
+     SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
+   `.trim();
 
-  meta.innerText = `
-    UA: ${navigator.userAgent}
-    SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
-  `.trim();
+   const peer = (window.peer = new Peer({
+     key: window.__SKYWAY_KEY__,
+     debug: 3,
+   }));
 
-  const getRoomModeByHash = () => (location.hash === '#sfu' ? 'sfu' : 'mesh');
+   // Register connecter handler
+   connectTrigger.addEventListener('click', () => {
+     // Note that you need to ensure the peer has connected to signaling server
+     // before using methods of peer instance.
+     if (!peer.open) {
+       return;
+     }
 
-  roomMode.textContent = getRoomModeByHash();
-  window.addEventListener(
-    'hashchange',
-    () => (roomMode.textContent = getRoomModeByHash())
-  );
+     const dataConnection = peer.connect(remoteId.value);
 
-  const localStream = await navigator.mediaDevices
-    .getUserMedia({
-      audio: true,
-      video: true,
-    })
-    .catch(console.error);
+     dataConnection.once('open', async () => {
+       messages.textContent += `=== DataConnection has been opened ===\n`;
 
-  // Render local stream
-  localVideo.muted = true;
-  localVideo.srcObject = localStream;
-  localVideo.playsInline = true;
-  await localVideo.play().catch(console.error);
+       sendTrigger.addEventListener('click', onClickSend);
+     });
 
-  // eslint-disable-next-line require-atomic-updates
-  const peer = (window.peer = new Peer({
-    key: window.__SKYWAY_KEY__,
-    debug: 3,
-  }));
+     dataConnection.on('data', data => {
+       messages.textContent += `Remote: ${data}\n`;
+     });
 
-  // Register join handler
-  joinTrigger.addEventListener('click', () => {
-    // Note that you need to ensure the peer has connected to signaling server
-    // before using methods of peer instance.
-    if (!peer.open) {
-      return;
-    }
+     dataConnection.once('close', () => {
+       messages.textContent += `=== DataConnection has been closed ===\n`;
+       sendTrigger.removeEventListener('click', onClickSend);
+     });
 
-    const room = peer.joinRoom(roomId.value, {
-      mode: getRoomModeByHash(),
-      stream: localStream,
-    });
+     // Register closing handler
+     closeTrigger.addEventListener('click', () => dataConnection.close(), {
+       once: true,
+     });
 
-    room.once('open', () => {
-      messages.textContent += '=== You joined ===\n';
-    });
-    room.on('peerJoin', peerId => {
-      messages.textContent += `=== ${peerId} joined ===\n`;
-      peerVolume.push(0.5);
-      peerIdTmp = peerId;
-      //peerIdArray.push(peerId);
-    });
+     function onClickSend() {
+       const data = localText.value;
+       dataConnection.send(data);
 
-    // Render remote stream for new peer join in the room
-    room.on('stream', async stream => {
-      const newVideo = document.createElement('video');
-      typeTmp = typeof newVideo;
-      console.log("tnnypeof:", typeof newVideo);
-      audioContext = new (window.AudioContext || window.webkitAudioContext);
-      sourceAC = audioContext.createMediaStreamSource(stream);
-      audioDestination = audioContext.createMediaStreamDestination();
-      gainNode = audioContext.createGain();
-      sourceAC.connect(gainNode);
-      gainNode.connect(audioDestination);
-      gainNode.gain.setValueAtTime(peerVolume[0], audioContext.currentTime);
-      newVideo.srcObject = audioDestination.stream;
-      newVideo.playsInline = true;
-      // mark peerId to find it later at peerLeave event
-      newVideo.setAttribute('data-peer-id', stream.peerId);
-      remoteVideos.append(newVideo);
-      await newVideo.play().catch(console.error);
-    });
+       messages.textContent += `You: ${data}\n`;
+       localText.value = '';
+     }
+   });
 
-    room.on('data', ({ data, src }) => {
-      // Show a message sent to the room and who sent
-      messages.textContent += `${src}: ${data}\n`;
-    });
+   peer.once('open', id => (localId.textContent = id));
 
-    // for closing room members
-    room.on('peerLeave', peerId => {
-      const remoteVideo = remoteVideos.querySelector(
-        `[data-peer-id="${peerId}"]`
-      );
-      remoteVideo.srcObject.getTracks().forEach(track => track.stop());
-      remoteVideo.srcObject = null;
-      remoteVideo.remove();
+   // Register connected peer handler
+   peer.on('connection', dataConnection => {
+     dataConnection.once('open', async () => {
+       messages.textContent += `=== DataConnection has been opened ===\n`;
 
-      messages.textContent += `=== ${peerId} left ===\n`;
-    });
+       sendTrigger.addEventListener('click', onClickSend);
+     });
 
-    // for closing myself
-    room.once('close', () => {
-      sendTrigger.removeEventListener('click', onClickSend);
-      messages.textContent += '== You left ===\n';
-      Array.from(remoteVideos.children).forEach(remoteVideo => {
-        remoteVideo.srcObject.getTracks().forEach(track => track.stop());
-        remoteVideo.srcObject = null;
-        remoteVideo.remove();
-      });
-    });
+     dataConnection.on('data', data => {
+       messages.textContent += `Remote: ${data}\n`;
+     });
 
-    sendTrigger.addEventListener('click', onClickSend);
-    leaveTrigger.addEventListener('click', () => room.close(), { once: true });
+     dataConnection.once('close', () => {
+       messages.textContent += `=== DataConnection has been closed ===\n`;
+       sendTrigger.removeEventListener('click', onClickSend);
+     });
 
-    function onClickSend() {
-      // Send message to all of the peers in the room via websocket
-      room.send(localText.value);
+     // Register closing handler
+     closeTrigger.addEventListener('click', () => dataConnection.close(), {
+       once: true,
+     });
 
-      messages.textContent += `${peer.id}: ${localText.value}\n`;
-      localText.value = '';
-    }
+     function onClickSend() {
+       const data = localText.value;
+       dataConnection.send(data);
 
-    volumeSlider.addEventListener("change", e => {
+       messages.textContent += `You: ${data}\n`;
+       localText.value = '';
+     }
+   });
+
+   volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
-  //gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
   console.log("peerIDは:", peerIdTmp);
   const remoteVideo = remoteVideos.querySelector(
     `[data-peer-id="${peerIdTmp}"]`
   );
   audioContext = new (window.AudioContext || window.webkitAudioContext);
-  console.log("srcObjectは:", remoteVideo.srcObject);
-  // sourceAC = audioContext.createMediaStreamSource(remoteVideo.srcObject);
-  // audioDestination = audioContext.createMediaStreamDestination();
-  // gainNode = audioContext.createGain();
-  // sourceAC.connect(gainNode);
-  // gainNode.connect(audioDestination);
-  // gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
-  // remoteVideo.srcObject = audioDestination.stream;
   remoteVideo.volume = volume / 100;
-  //peerVolume[0] = volume / 100;
-  console.log("gain:", gainNode.gain.value);
-  console.log("volume:", volume);
-  console.log("tttypeof:", typeTmp);
 });
-  });
 
-  peer.on('error', console.error);
-})();
+   peer.on('error', console.error);
+ })();
