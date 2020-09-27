@@ -19,6 +19,8 @@ const Peer = window.Peer;
   let audioDestination = null;
   let gainNode = null;
   let peerIdArray = [];
+  let peerIdTmp = null;
+  let peerVolume = [];
 
 
   meta.innerText = `
@@ -71,6 +73,7 @@ const Peer = window.Peer;
     });
     room.on('peerJoin', peerId => {
       messages.textContent += `=== ${peerId} joined ===\n`;
+      peerVolume.push(0.5);
       //peerIdArray.push(peerId);
     });
 
@@ -84,7 +87,7 @@ const Peer = window.Peer;
       gainNode = audioContext.createGain();
       sourceAC.connect(gainNode);
       gainNode.connect(audioDestination);
-      gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(peerVolume[0], audioContext.currentTime);
       newVideo.srcObject = audioDestination.stream;
       newVideo.playsInline = true;
       // mark peerId to find it later at peerLeave event
@@ -135,6 +138,7 @@ const Peer = window.Peer;
     volumeSlider.addEventListener("change", e => {
   const volume = e.target.value;
   gainNode.gain.setValueAtTime(volume / 100, audioContext.currentTime);
+
   console.log("gain:", gainNode.gain.value);
   console.log("volume:", volume);
 });
