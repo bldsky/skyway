@@ -16,6 +16,8 @@ const Peer = window.Peer;
 
    const volumeSlider = document.getElementById("volume");
    const volumeSlider2 = document.getElementById("volume2");
+   const volumeSlider3 = document.getElementById("volume3");
+   const volumeSlider4 = document.getElementById("volume4");
 
 
 
@@ -139,6 +141,24 @@ const volume = e.target.value;
 console.log("peerIDは:", peerIdArray[1]);
 const remoteVideo = remoteVideos.querySelector(
  `[data-peer-id="${peerIdArray[1]}"]`
+);
+remoteVideo.volume = volume / 100;
+});
+
+  volumeSlider3.addEventListener("change", e => {
+const volume = e.target.value;
+console.log("peerIDは:", peerIdArray[2]);
+const remoteVideo = remoteVideos.querySelector(
+`[data-peer-id="${peerIdArray[2]}"]`
+);
+remoteVideo.volume = volume / 100;
+});
+
+  volumeSlider4.addEventListener("change", e => {
+const volume = e.target.value;
+console.log("peerIDは:", peerIdArray[3]);
+const remoteVideo = remoteVideos.querySelector(
+`[data-peer-id="${peerIdArray[3]}"]`
 );
 remoteVideo.volume = volume / 100;
 });
