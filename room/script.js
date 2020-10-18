@@ -199,8 +199,6 @@ const Peer = window.Peer;
       drag.classList.remove("drag");
   }
 
- })();
-
 //  (function(){
 
 //   //要素の取得
