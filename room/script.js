@@ -75,6 +75,7 @@ const Peer = window.Peer;
        newVideo.playsInline = true;
        // mark peerId to find it later at peerLeave event
        newVideo.setAttribute('data-peer-id', stream.peerId);
+       newVideo.setAttribute('class', "myIcon");
        remoteVideos.append(newVideo);
        peerIdArray.push(stream.peerId);
        await newVideo.play().catch(console.error);
