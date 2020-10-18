@@ -181,6 +181,7 @@ remoteVideo.volume = volume / 100;
    //マウスが押された際の関数
    function mdown(e) {
 
+        alert("hey!");
        //クラス名に .drag を追加
        this.classList.add("drag");
 
