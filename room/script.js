@@ -127,42 +127,6 @@ const Peer = window.Peer;
      }
    });
 
-   volumeSlider.addEventListener("change", e => {
-  const volume = e.target.value;
-  console.log("peerIDは:", peerIdArray[0]);
-  const remoteVideo = remoteVideos.querySelector(
-    `[data-peer-id="${peerIdArray[0]}"]`
-  );
-  remoteVideo.volume = volume / 100;
-});
-
-  volumeSlider2.addEventListener("change", e => {
-const volume = e.target.value;
-console.log("peerIDは:", peerIdArray[1]);
-const remoteVideo = remoteVideos.querySelector(
- `[data-peer-id="${peerIdArray[1]}"]`
-);
-remoteVideo.volume = volume / 100;
-});
-
-  volumeSlider3.addEventListener("change", e => {
-const volume = e.target.value;
-console.log("peerIDは:", peerIdArray[2]);
-const remoteVideo = remoteVideos.querySelector(
-`[data-peer-id="${peerIdArray[2]}"]`
-);
-remoteVideo.volume = volume / 100;
-});
-
-  volumeSlider4.addEventListener("change", e => {
-const volume = e.target.value;
-console.log("peerIDは:", peerIdArray[3]);
-const remoteVideo = remoteVideos.querySelector(
-`[data-peer-id="${peerIdArray[3]}"]`
-);
-remoteVideo.volume = volume / 100;
-});
-
    peer.on('error', console.error);
 
  })();
