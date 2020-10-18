@@ -170,7 +170,7 @@ remoteVideo.volume = volume / 100;
  (function(){
 
   //要素の取得
-  var elements = document.getElementsByClassName("drag-and-drop");
+  var elements = document.getElementsByClassName("myIcon");
 
   //要素内のクリックされた位置を取得するグローバル（のような）変数
   var x;
