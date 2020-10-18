@@ -140,6 +140,7 @@ const Peer = window.Peer;
   //マウスが押された際の関数
   function mdown(e) {
 
+      console.log("a")
       //クラス名に .drag を追加
       this.classList.add("drag");
 
