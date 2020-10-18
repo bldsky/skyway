@@ -75,3 +75,13 @@ video {
   padding: 8px;
   margin-top: 0;
 }
+
+.myIcon {
+  cursor: move;
+  position: absolute;
+  z-index: 1000;
+}
+
+.drag {
+  z-index: 1001;
+}
