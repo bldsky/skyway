@@ -81,7 +81,8 @@ const Peer = window.Peer;
        newVideo.srcObject = stream;
        newVideo.playsInline = true;
        // mark peerId to find it later at peerLeave event
-       newVideo.setAttribute('class', 'icon_'+stream.peerId);
+       newVideo.setAttribute('class', 'remoteIcon');
+       newVideo.setAttribute('id', 'id_'+stream.peerId);
        newVideo.setAttribute('data-peer-id', stream.peerId);
        newVideo.setAttribute('style', 'width: 100px; height: 100px; top: 100px; left: 100px;');
        remoteVideos.append(newVideo);
@@ -95,7 +96,7 @@ const Peer = window.Peer;
         messages.textContent += `${src}: ${data}\n`;
        } else {
          console.log(data[0]);
-         var tmp = document.getElementsByClassName('icon_'+src)[0];
+         var tmp = document.getElementsById('id_'+src)[0];
          console.log(tmp);
          tmp.style.top = data[1];
          tmp.style.left = data[0];
