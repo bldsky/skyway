@@ -95,7 +95,7 @@ const Peer = window.Peer;
         messages.textContent += `${src}: ${data}\n`;
        } else {
          console.log(data[0]);
-         var tmp = document.getElementsByClassName('icon_'+src);
+         var tmp = document.getElementsByClassName('icon_'+src)[0];
          console.log(tmp);
          tmp.style.top = data[1];
          tmp.style.left = data[0];
