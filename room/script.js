@@ -91,7 +91,7 @@ const Peer = window.Peer;
 
      room.on('data', ({ data, src }) => {
        // Show a message sent to the room and who sent
-       console.log(typeof data);
+       //console.log(typeof data);
        if(typeof data == 'String') {
         messages.textContent += `${src}: ${data}\n`;
        } else if(typeof data == 'Array'){
