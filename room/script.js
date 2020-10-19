@@ -23,12 +23,6 @@ const Peer = window.Peer;
   var x;
   var y;
 
-  //マウスが要素内で押されたとき、又はタッチされたとき発火
-  for(var i = 0; i < elements.length; i++) {
-      elements[i].addEventListener("mousedown", mdown, false);
-      elements[i].addEventListener("touchstart", mdown, false);
-  }
-
    meta.innerText = `
      UA: ${navigator.userAgent}
      SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
@@ -137,6 +131,12 @@ const Peer = window.Peer;
 
        messages.textContent += `${peer.id}: ${localText.value}\n`;
        localText.value = '';
+      }
+
+      //マウスが要素内で押されたとき、又はタッチされたとき発火
+      for(var i = 0; i < elements.length; i++) {
+        elements[i].addEventListener("mousedown", mdown, false);
+        elements[i].addEventListener("touchstart", mdown, false);
       }
 
     //マウスが押された際の関数
