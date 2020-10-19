@@ -91,12 +91,12 @@ const Peer = window.Peer;
 
      room.on('data', ({ data, src }) => {
        // Show a message sent to the room and who sent
-       console.log(typeof data);
        if(typeof data == 'String') {
         messages.textContent += `${src}: ${data}\n`;
        } else {
          console.log(data[0]);
          var tmp = document.getElementsByClassName('icon_'+src);
+         console.log(tmp);
          tmp.style.top = data[1];
          tmp.style.left = data[0];
        }
