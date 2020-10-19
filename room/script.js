@@ -96,8 +96,9 @@ const Peer = window.Peer;
         messages.textContent += `${src}: ${data}\n`;
        } else {
          console.log(data[0]);
-         
-         getElementById
+         var tmp = document.getElementsByClassName('icon_'+src);
+         tmp.style.top = data[1];
+         tmp.style.left = data[0];
        }
      });
 
