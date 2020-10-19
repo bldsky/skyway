@@ -131,84 +131,82 @@ const Peer = window.Peer;
      sendTrigger.addEventListener('click', onClickSend);
      leaveTrigger.addEventListener('click', () => room.close(), { once: true });
 
-     function onClickSend() {
+      function onClickSend() {
        // Send message to all of the peers in the room via websocket
        room.send(localText.value);
 
        messages.textContent += `${peer.id}: ${localText.value}\n`;
        localText.value = '';
-     }
+      }
+
+    //マウスが押された際の関数
+    function mdown(e) {
+    //クラス名に .drag を追加
+    this.classList.add("drag");
+
+    //タッチデイベントとマウスのイベントの差異を吸収
+    if(e.type === "mousedown") {
+        var event = e;
+    } else {
+        var event = e.changedTouches[0];
+    }
+
+    //要素内の相対座標を取得
+    x = event.pageX - this.offsetLeft;
+    y = event.pageY - this.offsetTop;
+
+    //ムーブイベントにコールバック
+    document.body.addEventListener("mousemove", mmove, false);
+    document.body.addEventListener("touchmove", mmove, false);
+}
+
+//マウスカーソルが動いたときに発火
+function mmove(e) {
+
+    //ドラッグしている要素を取得
+    var drag = document.getElementsByClassName("drag")[0];
+
+    //同様にマウスとタッチの差異を吸収
+    if(e.type === "mousemove") {
+        var event = e;
+    } else {
+        var event = e.changedTouches[0];
+    }
+
+    //フリックしたときに画面を動かさないようにデフォルト動作を抑制
+    e.preventDefault();
+
+    //マウスが動いた場所に要素を動かす
+    drag.style.top = event.pageY - y + "px";
+    drag.style.left = event.pageX - x + "px";
+
+    //座標をsendでroomの参加者に送信。（room.on('data')で受け取り）
+    room.send([x,y]);
+
+    //マウスボタンが離されたとき、またはカーソルが外れたとき発火
+    drag.addEventListener("mouseup", mup, false);
+    document.body.addEventListener("mouseleave", mup, false);
+    drag.addEventListener("touchend", mup, false);
+    document.body.addEventListener("touchleave", mup, false);
+
+}
+
+//マウスボタンが上がったら発火
+function mup(e) {
+    var drag = document.getElementsByClassName("drag")[0];
+
+    //ムーブベントハンドラの消去
+    document.body.removeEventListener("mousemove", mmove, false);
+    drag.removeEventListener("mouseup", mup, false);
+    document.body.removeEventListener("touchmove", mmove, false);
+    drag.removeEventListener("touchend", mup, false);
+
+    //クラス名 .drag も消す
+    drag.classList.remove("drag");
+}
    });
 
    peer.on('error', console.error);
-
-  //マウスが押された際の関数
-  function mdown(e) {
-
-      console.log("a")
-      //クラス名に .drag を追加
-      this.classList.add("drag");
-
-      //タッチデイベントとマウスのイベントの差異を吸収
-      if(e.type === "mousedown") {
-          var event = e;
-      } else {
-          var event = e.changedTouches[0];
-      }
-
-      //要素内の相対座標を取得
-      x = event.pageX - this.offsetLeft;
-      y = event.pageY - this.offsetTop;
-
-      //ムーブイベントにコールバック
-      document.body.addEventListener("mousemove", mmove, false);
-      document.body.addEventListener("touchmove", mmove, false);
-  }
-
-  //マウスカーソルが動いたときに発火
-  function mmove(e) {
-
-      //ドラッグしている要素を取得
-      var drag = document.getElementsByClassName("drag")[0];
-
-      //同様にマウスとタッチの差異を吸収
-      if(e.type === "mousemove") {
-          var event = e;
-      } else {
-          var event = e.changedTouches[0];
-      }
-
-      //フリックしたときに画面を動かさないようにデフォルト動作を抑制
-      e.preventDefault();
-
-      //マウスが動いた場所に要素を動かす
-      drag.style.top = event.pageY - y + "px";
-      drag.style.left = event.pageX - x + "px";
-
-      //座標をsendでroomの参加者に送信。（room.on('data')で受け取り）
-      room.send([x,y]);
-
-      //マウスボタンが離されたとき、またはカーソルが外れたとき発火
-      drag.addEventListener("mouseup", mup, false);
-      document.body.addEventListener("mouseleave", mup, false);
-      drag.addEventListener("touchend", mup, false);
-      document.body.addEventListener("touchleave", mup, false);
-
-  }
-
-  //マウスボタンが上がったら発火
-  function mup(e) {
-      var drag = document.getElementsByClassName("drag")[0];
-
-      //ムーブベントハンドラの消去
-      document.body.removeEventListener("mousemove", mmove, false);
-      drag.removeEventListener("mouseup", mup, false);
-      document.body.removeEventListener("touchmove", mmove, false);
-      drag.removeEventListener("touchend", mup, false);
-
-      //クラス名 .drag も消す
-      drag.classList.remove("drag");
-  }
 
 //  (function(){
 
