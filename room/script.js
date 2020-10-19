@@ -84,7 +84,12 @@ const Peer = window.Peer;
 
      room.on('data', ({ data, src }) => {
        // Show a message sent to the room and who sent
-       messages.textContent += `${src}: ${data}\n`;
+       console.log(typeof data);
+       if(typeof data == 'String') {
+        messages.textContent += `${src}: ${data}\n`;
+       } else if(typeof data == 'Array'){
+         console.log(data[0]);
+       }
      });
 
      // for closing room members
@@ -179,6 +184,9 @@ const Peer = window.Peer;
       //マウスが動いた場所に要素を動かす
       drag.style.top = event.pageY - y + "px";
       drag.style.left = event.pageX - x + "px";
+
+      //座標をsendでroomの参加者に送信。（room.on('data')で受け取り）
+      room.send([x,y]);
 
       //マウスボタンが離されたとき、またはカーソルが外れたとき発火
       drag.addEventListener("mouseup", mup, false);
