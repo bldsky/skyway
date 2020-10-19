@@ -94,7 +94,7 @@ const Peer = window.Peer;
        console.log(typeof data);
        if(typeof data == 'String') {
         messages.textContent += `${src}: ${data}\n`;
-       } else if(typeof data == 'Array'){
+       } else {
          console.log(data[0]);
        }
      });
