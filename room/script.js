@@ -180,7 +180,6 @@ function mmove(e) {
     e.preventDefault();
 
     //マウスが動いた場所に要素を動かす
-    console.log(drag);
     drag.style.top = event.pageY - y + "px";
     drag.style.left = event.pageX - x + "px";
 
