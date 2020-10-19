@@ -16,6 +16,19 @@ const Peer = window.Peer;
 
    let peerIdArray = [];
 
+  //要素の取得
+  var elements = document.getElementsByClassName("myIcon");
+
+  //要素内のクリックされた位置を取得するグローバル（のような）変数
+  var x;
+  var y;
+
+  //マウスが要素内で押されたとき、又はタッチされたとき発火
+  for(var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener("mousedown", mdown, false);
+      elements[i].addEventListener("touchstart", mdown, false);
+  }
+
    meta.innerText = `
      UA: ${navigator.userAgent}
      SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
@@ -128,19 +141,6 @@ const Peer = window.Peer;
    });
 
    peer.on('error', console.error);
-
-   //要素の取得
-  var elements = document.getElementsByClassName("myIcon");
-
-  //要素内のクリックされた位置を取得するグローバル（のような）変数
-  var x;
-  var y;
-
-  //マウスが要素内で押されたとき、又はタッチされたとき発火
-  for(var i = 0; i < elements.length; i++) {
-      elements[i].addEventListener("mousedown", mdown, false);
-      elements[i].addEventListener("touchstart", mdown, false);
-  }
 
   //マウスが押された際の関数
   function mdown(e) {
