@@ -184,7 +184,7 @@ function mmove(e) {
     drag.style.left = event.pageX - x + "px";
 
     //座標をsendでroomの参加者に送信。（room.on('data')で受け取り）
-    room.send([event.pageX - x,event.pageY - y]);
+    room.send([event.pageX - x + "px",event.pageY - y + "px"]);
 
     //マウスボタンが離されたとき、またはカーソルが外れたとき発火
     drag.addEventListener("mouseup", mup, false);
