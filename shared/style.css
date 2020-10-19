@@ -82,7 +82,7 @@ video {
   z-index: 1000;
 }
 
-.remoteIcon {
+#remoteIcon {
   cursor: move;
   position: absolute;
   z-index: 1000;
