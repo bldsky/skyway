@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SkyWay - Room example</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <link rel="stylesheet" href="../shared/style.css">
   </head>
   <body>
@@ -32,6 +33,22 @@
           <button id="js-leave-trigger">Leave</button>
       <p class="meta" id="js-meta"></p>
     </div>
+
+    <script>
+      let client = mqtt.connect('wss://test.mosquitto.org:8081');
+      let topic = "floor1/room1"
+      let metric = '{"name": "sensor1", "temp": 10}'
+      
+      client.subscribe(topic);
+      client.publish(topic, metric);
+      
+      client.on('message', function (topic, message) { // message is Buffer
+        console.log(message.toString());
+      });
+      
+      client.end();
+    </script>
+    
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
     <script src="../shared/key.js"></script>
     <script src="./script.js"></script>
