@@ -35,20 +35,25 @@
     </div>
 
     <script>
-      let client = mqtt.connect('wss://test.mosquitto.org:8081');
-      let topic = "floor1/room1"
-      let metric = '{"name": "sensor1", "temp": 10}'
-      
-      client.subscribe(topic);
-      client.publish(topic, metric);
-      
-      client.on('message', function (topic, message) { // message is Buffer
-        console.log(message.toString());
-      });
-      
-      client.end();
-    </script>
+    let client = mqtt.connect('wss://test.mosquitto.org:8081');
+    let topic = "floor1/room1"
     
+    client.subscribe(topic);
+    pubLoop = setInterval(() => {
+      const time = Date.now().toString();
+      const temp = Math.floor( Math.random() * 11 );
+      let metric = '{"time":' + time + ', "name": "sensor1", "temp":' + temp + '}'
+      client.publish(topic, metric);
+    }, 1000);
+    
+    client.on('message', function (topic, message) { // message is Buffer
+      console.log(message.toString());
+    });
+    
+    setTimeout(function() { clearInterval( pubLoop ); }, 10000); // stop after 10sec
+    
+    </script>
+
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
     <script src="../shared/key.js"></script>
     <script src="./script.js"></script>
