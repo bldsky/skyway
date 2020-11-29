@@ -48,11 +48,11 @@
       var Hy = messages[2].split(':')[1];
       console.log(Hx);
       console.log(Hx + 250);
-      console.log(((Hx + 250) * 1.7));
+      console.log(((parseFloat(Hx) + 250) * 1.7) + "px");
       console.log(Hy);
       console.log(((Hy + 300) * 1.7));
-      icon.style.top = ((Hx + 250) * 1.7) + "px";
-      icon.style.left = ((Hy + 300) * 1.7) + "px";
+      icon.style.top = ((parseFloat(Hx) + 250) * 1.7) + "px";
+      icon.style.left = ((parseFloat(Hy) + 300) * 1.7) + "px";
     })
     </script>
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
