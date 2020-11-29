@@ -33,7 +33,7 @@
           <button id="js-leave-trigger">Leave</button>
       <p class="meta" id="js-meta"></p>
     </div>
-<!--
+
     <script>
     let client = mqtt.connect('wss://test.mosquitto.org:8081');
     let topic = "floor1/room1"
@@ -42,9 +42,15 @@
     
     client.on('message', function(topic, message){
       console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
+      var icon = document.getElementsByClassName("myIcon")[0];
+      var messages = message.toString().split(',');
+      var Hx = messages[1].split(':')[1];
+      var Hy = messages[2].split(':')[1];
+      console.log(Hx);
+      console.log(Hy);
     })
     </script>
-  -->
+
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
     <script src="../shared/key.js"></script>
     <script src="./script.js"></script>
