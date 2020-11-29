@@ -148,6 +148,16 @@ const Peer = window.Peer;
       client.subscribe(topic);
       client.on('message', function(topic, message){
         console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
+        var icon = document.getElementsByClassName("myIcon")[0];
+        var messages = message.toString().split(',');
+        var Hx = messages[1].split(':')[1];
+        var Hy = messages[2].split(':')[1];
+        console.log(Hx);
+        console.log(Hy);
+        icon.style.top = Hx + 300 + "px";
+        icon.style.left = Hy + 300 + "px";
+
+        room.send([drag.style.left, drag.style.top]);
       })
       //ここまで
 
