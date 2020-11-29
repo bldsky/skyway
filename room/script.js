@@ -1,3 +1,7 @@
+fetch('https://unpkg.com/mqtt/dist/mqtt.min.js').then(r=>{return r.text()}).then(t=>{
+  // "t"にimport.jsのファイル内容が格納されているので
+  eval(t); //その内容を実行する
+});
 
 const Peer = window.Peer;
 
@@ -136,7 +140,7 @@ const Peer = window.Peer;
        messages.textContent += `${peer.id}: ${localText.value}\n`;
        localText.value = '';
       }
-      
+
       //ここからmosquitto(mqtt)のじっそう
       let client = mqtt.connect('wss://test.mosquitto.org:8081');
       let topic = "floor1/room1"
