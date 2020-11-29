@@ -136,6 +136,16 @@ const Peer = window.Peer;
        messages.textContent += `${peer.id}: ${localText.value}\n`;
        localText.value = '';
       }
+      
+      //ここからmosquitto(mqtt)のじっそう
+      let client = mqtt.connect('wss://test.mosquitto.org:8081');
+      let topic = "floor1/room1"
+      
+      client.subscribe(topic);
+      client.on('message', function(topic, message){
+        console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
+      })
+      //ここまで
 
       //マウスが要素内で押されたとき、又はタッチされたとき発火
       for(var i = 0; i < elements.length; i++) {
@@ -162,7 +172,7 @@ const Peer = window.Peer;
     //ムーブイベントにコールバック
     document.body.addEventListener("mousemove", mmove, false);
     document.body.addEventListener("touchmove", mmove, false);
-}
+    }
 
 //マウスカーソルが動いたときに発火
 function mmove(e) {
