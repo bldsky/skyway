@@ -46,7 +46,9 @@
       var messages = message.toString().split(',');
       var Hx = messages[1].split(':')[1];
       var Hy = messages[2].split(':')[1];
+      console.log(Hx);
       console.log(((Hx + 250) * 5 / 3));
+      console.log(Hy);
       console.log(((Hy + 300) * 5 / 3));
       icon.style.top = ((Hx + 250) * 5 / 3) + "px";
       icon.style.left = ((Hy + 300) * 10 / 6) + "px";
