@@ -39,6 +39,10 @@
     let topic = "floor1/room1"
     
     client.subscribe(topic);
+    
+    client.on('message', function(topic, message){
+      console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
+    })
     </script>
 
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
