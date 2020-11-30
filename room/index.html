@@ -47,16 +47,10 @@
       var Hx = messages[1].split(':')[1];
       var Hy = messages[2].split(':')[1];
       console.log(((parseFloat(Hx) + 250) * 1.7) + "px");
-      console.log(((parseFloat(Hy) + 300) * 1.7));
-     
-      var zahyouSet = function(){
-      icon.style.top = (parseFloat(icon.style.top) - (parseFloat(icon.style.top) - ((parseFloat(Hx) + 250) * 1.7)) / 3) + "px";
-      icon.style.left = (parseFloat(icon.style.left) - (parseFloat(icon.style.left) - ((parseFloat(Hy) + 300) * 1.7)) / 3) + "px";
-    }
-
-    setInterval(zahyouSet, 100);
+      console.log(((parseFloat(Hy + 300) * 1.7));
+      icon.style.top = ((parseFloat(Hx) + 250) * 1.7) + "px";
+      icon.style.left = ((parseFloat(Hy) + 300) * 1.7) + "px";
     })
-
     </script>
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
     <script src="../shared/key.js"></script>
