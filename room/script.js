@@ -78,9 +78,11 @@ const Peer = window.Peer;
 
      room.once('open', () => {
        //messages.textContent += '=== You joined ===\n';
+       room.send(userId.value);
      });
      room.on('peerJoin', peerId => {
        //messages.textContent += `=== ${peerId} joined ===\n`;
+       room.send(userId.value);
      });
 
      // Render remote stream for new peer join in the room
@@ -100,8 +102,12 @@ const Peer = window.Peer;
 
      room.on('data', ({ data, src }) => {
        // Show a message sent to the room and who sent
+       console.log(typeof data)
        if(typeof data == 'String') {
         messages.textContent += `${src}: ${data}\n`;
+       } else if(typeof data == 'number') {
+         var tmp = document.getElementsByClassName('class_'+src)[0];
+         tmp.id = data;
        } else {
          console.log(data[0]);
          var tmp = document.getElementsByClassName('class_'+src)[0];
