@@ -50,8 +50,16 @@
       console.log((parseFloat(Hy + 300) * 1.7));
       console.log(icon.style.top);
 
-      icon.style.top = ((((parseFloat(Hx) + 250) * 1.7) >= 850 ? "850px" : (parseFloat(Hx) + 250) * 1.7) + "px");
-      icon.style.left = ((((parseFloat(Hx) + 100) * 5) >= 1800 ? "1800px" : (parseFloat(Hx) + 100) * 5) + "px");
+      if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
+        icon.style.top = (((parseFloat(Hx) + 250) * 1.7) +"px" );
+      } else {
+        icon.style.top = "850px";
+      }
+      if (((parseFloat(Hy) + 100) * 5) >= 1800) {
+        icon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
+      } else {
+        icon.style.left = "1800px";
+      }
     })
     </script>
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
