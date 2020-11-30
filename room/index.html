@@ -48,7 +48,7 @@
       var Hy = messages[2].split(':')[1];
       console.log(((parseFloat(Hx) + 250) * 1.7) + "px");
       console.log((parseFloat(Hy + 300) * 1.7));
-      console.log(parseFloat(Hx) + (((parseFloat(Hx) + 250) * 1.7) - parseFloat(icon.style.top)));
+      console.log(((parseFloat(Hx) + 250) * 1.7) - parseFloat(icon.style.top));
       icon.style.top = parseFloat(Hx) + (((parseFloat(Hx) + 250) * 1.7) - parseFloat(icon.style.top)) * 0.3 + "px";
       icon.style.left = parseFloat(Hy) + (((parseFloat(Hy) + 300) * 1.7) - parseFloat(icon.style.left)) * 0.3 + "px";
     })
