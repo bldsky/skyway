@@ -69,6 +69,7 @@ const Peer = window.Peer;
      }
 
      elements.setAttribute('id', userId);
+     console.log(elements);
 
      const room = peer.joinRoom(roomId.value, {
        mode: getRoomModeByHash(),
