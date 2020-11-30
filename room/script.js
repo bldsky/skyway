@@ -11,6 +11,7 @@ const Peer = window.Peer;
    const leaveTrigger = document.getElementById('js-leave-trigger');
    const remoteVideos = document.getElementById('js-remote-streams');
    const roomId = document.getElementById('js-room-id');
+   const userId = document.getElementById('js-user-id');
    const roomMode = document.getElementById('js-room-mode');
    const localText = document.getElementById('js-local-text');
    const sendTrigger = document.getElementById('js-send-trigger');
@@ -66,6 +67,8 @@ const Peer = window.Peer;
      if (!peer.open) {
        return;
      }
+
+     elements.setAttribute('id', userId);
 
      const room = peer.joinRoom(roomId.value, {
        mode: getRoomModeByHash(),
