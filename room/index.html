@@ -52,11 +52,15 @@
 
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
         icon.style.top = "850px";
+      } else if (((parseFloat(Hx) + 250) * 1.7) <= 0) {
+        icon.style.top = "0px";
       } else {
         icon.style.top = (((parseFloat(Hx) + 250) * 1.7) +"px" );
       }
       if (((parseFloat(Hy) + 100) * 5) >= 1800) {
         icon.style.left = "1800px";
+      } else if (((parseFloat(Hy) + 100) * 5) <= 0) {
+        icon.style.left = "0px";
       } else {
         icon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
       }
