@@ -5,6 +5,9 @@ body { margin: 0; }
 video {
   background-color: #111;
   width: 100%;
+  cursor: move;
+  position: absolute;
+  z-index: 1000;
 }
 
 .heading {
@@ -83,12 +86,6 @@ video {
 }
 
 #remoteId {
-  cursor: move;
-  position: absolute;
-  z-index: 1000;
-}
-
-video[class$="class_"]{
   cursor: move;
   position: absolute;
   z-index: 1000;
