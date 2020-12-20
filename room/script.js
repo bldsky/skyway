@@ -149,10 +149,10 @@ const Peer = window.Peer;
 
      //IDを手動で一括セット
      setID.addEventListener('click', () => {
-      for (let key in hash) {
+      for (let key in peerIdArray) {
         var tmp = document.getElementsByClassName('class_'+key)[0];
         console.log(tmp);
-        tmp.id = hash;
+        tmp.id = peerIdArray[key];
       }
      })
      //sendTrigger.addEventListener('click', onClickSend);
