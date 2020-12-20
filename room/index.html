@@ -47,6 +47,10 @@
       console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
       var icon = document.getElementsByClassName("myIcon")[0];
       var messages = message.toString().split(',');
+      var id = messages[0].split(':')[1];
+      console.log(id);
+      var tmp = document.getElementById(id);
+      console.log(tmp);
       var Hx = messages[1].split(':')[1];
       var Hy = messages[2].split(':')[1];
       console.log(((parseFloat(Hx) + 250) * 1.7) + "px");
