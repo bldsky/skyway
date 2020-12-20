@@ -47,8 +47,7 @@
       console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
       //var icon = document.getElementsByClassName("myIcon")[0];
       var messages = message.toString().split(',');
-      var id = messages[0].split(':')[1];
-      id.trim();
+      var id = messages[0].split(':')[1].trim();
       console.log(typeof id);
       console.log(id);
       var moveIcon = document.getElementById(id);
