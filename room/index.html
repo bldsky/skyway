@@ -50,7 +50,16 @@
       var id = messages[0].split(':')[1];
       console.log(typeof id);
       console.log(id);
-      var tmp = document.getElementById(id);
+      switch (id){
+        case "1":
+          var tmp = document.getElementById(1);
+          break;
+        case "2":
+          var tmp = document.getElementById(2);
+          break;
+        default:
+          console.log("fuckin");
+      }
       var tmp1 = document.getElementById("1");
       console.log(tmp);
       console.log(tmp1);
