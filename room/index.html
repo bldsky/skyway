@@ -76,7 +76,11 @@
         var mI = document.getElementsByClassName("myIcon")[0];
         var kyori = Math.sqrt(Math.pow((parseFloat(mI.style.top) - parseFloat(moveIcon.style.top)), 2) + Math.pow((parseFloat(mI.style.left) - parseFloat(moveIcon.style.left)), 2));
         console.log(kyori);
-        //var volume = 
+        if (kyori <= 100) {
+          moveIcon.volume = 1;
+        } else {
+          moveIcon.volume = 100/kyori;   //double型で0~1
+        }
       }
     })
     </script>
