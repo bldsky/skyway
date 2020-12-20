@@ -45,46 +45,33 @@
     
     client.on('message', function(topic, message){
       console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
-      var icon = document.getElementsByClassName("myIcon")[0];
+      //var icon = document.getElementsByClassName("myIcon")[0];
       var messages = message.toString().split(',');
       var id = messages[0].split(':')[1];
       id.trim();
       console.log(typeof id);
       console.log(id);
-      switch (id){
-        case " 1":
-          console.log("lol");
-        case "1":
-          var tmp = document.getElementById(1);
-          break;
-        case "2":
-          var tmp = document.getElementById(2);
-          break;
-        default:
-          console.log("fuckin");
-      }
-      var tmp1 = document.getElementById("1");
+      var moveIcon = document.getElementById(id);
       console.log(tmp);
-      console.log(tmp1);
       var Hx = messages[1].split(':')[1];
       var Hy = messages[2].split(':')[1];
       console.log(((parseFloat(Hx) + 250) * 1.7) + "px");
       console.log((parseFloat(Hy + 300) * 1.7));
-      console.log(icon.style.top);
+      console.log(moveIcon.style.top);
 
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
-        icon.style.top = "850px";
+        moveIcon.style.top = "850px";
       } else if (((parseFloat(Hx) + 250) * 1.7) <= 0) {
-        icon.style.top = "0px";
+        moveIcon.style.top = "0px";
       } else {
-        icon.style.top = (((parseFloat(Hx) + 250) * 1.7) +"px" );
+        moveIcon.style.top = (((parseFloat(Hx) + 250) * 1.7) +"px" );
       }
       if (((parseFloat(Hy) + 100) * 5) >= 1800) {
-        icon.style.left = "1800px";
+        moveIcon.style.left = "1800px";
       } else if (((parseFloat(Hy) + 100) * 5) <= 0) {
-        icon.style.left = "0px";
+        moveIcon.style.left = "0px";
       } else {
-        icon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
+        moveIcon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
       }
     })
     </script>
