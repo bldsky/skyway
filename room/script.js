@@ -108,6 +108,8 @@ const Peer = window.Peer;
        } else if(typeof data == 'string') {
          console.log("connect");
          var tmp = document.getElementsByClassName('class_'+src)[0];
+         console.log(src);
+         console.log(tmp);
          tmp.id = data;
        } else {
          console.log(data[0]);
