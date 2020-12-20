@@ -107,12 +107,13 @@ const Peer = window.Peer;
         messages.textContent += `${src}: ${data}\n`;
        } else if(typeof data == 'string') {
          console.log("connect");
-         setTimeout(function () {
-          var tmp = document.getElementsByClassName('class_'+src)[0];
-          console.log(tmp);
-          tmp.id = data;
-          peerIdArray[src] = data;
-         }, 1500);
+         peerIdArray[src] = data;
+        //  setTimeout(function () {
+        //   var tmp = document.getElementsByClassName('class_'+src)[0];
+        //   console.log(tmp);
+        //   tmp.id = data;
+        //   peerIdArray[src] = data;
+        //  }, 1500);
          console.log(src);
        } else {
          console.log(data[0]);
