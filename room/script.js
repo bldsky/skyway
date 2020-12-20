@@ -107,10 +107,12 @@ const Peer = window.Peer;
         messages.textContent += `${src}: ${data}\n`;
        } else if(typeof data == 'string') {
          console.log("connect");
-         var tmp = document.getElementsByClassName('class_'+src)[0];
+         setTimeout(function () {
+          var tmp = document.getElementsByClassName('class_'+src)[0];
+          console.log(tmp);
+          tmp.id = data;
+         })
          console.log(src);
-         console.log(tmp);
-         tmp.id = data;
        } else {
          console.log(data[0]);
          var tmp = document.getElementsByClassName('class_'+src)[0];
