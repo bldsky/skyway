@@ -9,6 +9,7 @@ const Peer = window.Peer;
    const localVideo = document.getElementById('js-local-stream');
    const joinTrigger = document.getElementById('js-join-trigger');
    const leaveTrigger = document.getElementById('js-leave-trigger');
+   const setID = document.getElementById('js-set-id');
    const remoteVideos = document.getElementById('js-remote-streams');
    const roomId = document.getElementById('js-room-id');
    const userId = document.getElementById('js-user-id');
@@ -19,7 +20,7 @@ const Peer = window.Peer;
    const meta = document.getElementById('js-meta');
    const sdkSrc = document.querySelector('script[src*=skyway]');
 
-   let peerIdArray = [];
+   let peerIdArray = {};
 
   //要素の取得
   var elements = document.getElementsByClassName("myIcon");
@@ -96,7 +97,6 @@ const Peer = window.Peer;
        newVideo.setAttribute('data-peer-id', stream.peerId);
        newVideo.setAttribute('style', 'width: 100px; height: 100px; top: 100px; left: 100px;');
        remoteVideos.append(newVideo);
-       peerIdArray.push(stream.peerId);
        await newVideo.play().catch(console.error);
      });
 
@@ -111,6 +111,7 @@ const Peer = window.Peer;
           var tmp = document.getElementsByClassName('class_'+src)[0];
           console.log(tmp);
           tmp.id = data;
+          peerIdArray[src] = data;
          }, 1500);
          console.log(src);
        } else {
@@ -145,6 +146,14 @@ const Peer = window.Peer;
        });
      });
 
+     //IDを手動で一括セット
+     setID.addEventListener('click', () => {
+      for (let key in hash) {
+        var tmp = document.getElementsByClassName('class_'+key)[0];
+        console.log(tmp);
+        tmp.id = hash;
+      }
+     })
      //sendTrigger.addEventListener('click', onClickSend);
      leaveTrigger.addEventListener('click', () => room.close(), { once: true });
 
