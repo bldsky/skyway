@@ -105,7 +105,8 @@ const Peer = window.Peer;
        console.log(typeof data)
        if(typeof data == 'String') {
         messages.textContent += `${src}: ${data}\n`;
-       } else if(typeof data == 'number') {
+       } else if(typeof data == 'string') {
+         console.log("connect");
          var tmp = document.getElementsByClassName('class_'+src)[0];
          tmp.id = data;
        } else {
