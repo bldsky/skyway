@@ -167,23 +167,23 @@ const Peer = window.Peer;
       }
 
       //ここからmosquitto(mqtt)のじっそう
-      let client = mqtt.connect('wss://test.mosquitto.org:8081');
-      let topic = "floor1/room1"
+      // let client = mqtt.connect('wss://test.mosquitto.org:8081');
+      // let topic = "floor1/room1"
       
-      client.subscribe(topic);
-      client.on('message', function(topic, message){
-        console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
-        var icon = document.getElementsByClassName("myIcon")[0];
-        var messages = message.toString().split(',');
-        var Hx = messages[1].split(':')[1];
-        var Hy = messages[2].split(':')[1];
-        console.log(((Hx + 250) * 5 / 3));
-        console.log(((Hy + 300) * 5 / 3));
-        icon.style.top = ((Hx + 250) * 5 / 3) + "px";
-        icon.style.left = ((Hy + 300) * 10 / 6) + "px";
+      // client.subscribe(topic);
+      // client.on('message', function(topic, message){
+      //   console.log('subscriber.on.message', 'topic:', topic, 'message:', message.toString());
+      //   var icon = document.getElementsByClassName("myIcon")[0];
+      //   var messages = message.toString().split(',');
+      //   var Hx = messages[1].split(':')[1];
+      //   var Hy = messages[2].split(':')[1];
+      //   console.log(((Hx + 250) * 5 / 3));
+      //   console.log(((Hy + 300) * 5 / 3));
+      //   icon.style.top = ((Hx + 250) * 5 / 3) + "px";
+      //   icon.style.left = ((Hy + 300) * 10 / 6) + "px";
 
-        room.send([drag.style.left, drag.style.top]);
-      })
+      //   room.send([drag.style.left, drag.style.top]);
+      // })
       //ここまで
 
       //マウスが要素内で押されたとき、又はタッチされたとき発火
