@@ -111,7 +111,7 @@ const Peer = window.Peer;
           var tmp = document.getElementsByClassName('class_'+src)[0];
           console.log(tmp);
           tmp.id = data;
-         }, 500);
+         }, 1500);
          console.log(src);
        } else {
          console.log(data[0]);
