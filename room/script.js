@@ -218,6 +218,7 @@ const Peer = window.Peer;
       } else {
         moveIcon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
       }
+      console.log(moveIcon.className);
       if (moveIcon.className != "myIcon") {
         var mI = document.getElementsByClassName("myIcon")[0];
         var kyori = Math.sqrt(Math.pow((parseFloat(mI.style.top) - parseFloat(moveIcon.style.top)), 2) + Math.pow((parseFloat(mI.style.left) - parseFloat(moveIcon.style.left)), 2));
