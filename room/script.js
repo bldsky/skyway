@@ -224,7 +224,7 @@ const Peer = window.Peer;
         console.log(kyori);
         console.log(moveIcon);
         var remoteVideo = remoteVideos.querySelector(
-          `[data-peer-id="${moveIcon.data-peerp-id}"]`
+          `[data-peer-id="${moveIcon.data-peer-id}"]`
         )
         remoteVideo.volume = 0;
         if (kyori <= 100) {
