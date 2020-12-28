@@ -229,7 +229,10 @@ const Peer = window.Peer;
         )
         if (kyori <= 100) {
           remoteVideo.volume = 1.0;
-          console.log("100以上（VolumeMax）");
+          console.log("100以下(VolumeMax)");
+        } else if (kyori >= 500){
+          remoteVolume = 0.0;
+          console.log("500以上(Volume0)");
         } else {
           remoteVideo.volume = 100/kyori;   //double型で0~1
           console.log(remoteVideo.volume);
