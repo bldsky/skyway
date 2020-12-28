@@ -204,6 +204,12 @@ const Peer = window.Peer;
       console.log((parseFloat(Hy + 300) * 1.7));
       console.log(moveIcon.style.top);
 
+      var postTop = ((parseFloat(Hx) + 250) * 1.7) + "px";
+      var postLeft = ((parseFloat(Hy) + 100) * 5) + "px";
+
+      var distancePreToPost = Math.sqrt(Math.pow(parseFloat(PostTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(PostLeft) - parseFloat(moveIcon.style.left), 2));
+
+      if (distancePreToPost >= 200) {
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
         moveIcon.style.top = "850px";
       } else if (((parseFloat(Hx) + 250) * 1.7) <= 0) {
@@ -217,24 +223,24 @@ const Peer = window.Peer;
         moveIcon.style.left = "0px";
       } else {
         moveIcon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
-      }
+      }}
       console.log(moveIcon.className);
       if (moveIcon.className != "myIcon") {
         var mI = document.getElementsByClassName("myIcon")[0];
-        var kyori = Math.sqrt(Math.pow((parseFloat(mI.style.top) - parseFloat(moveIcon.style.top)), 2) + Math.pow((parseFloat(mI.style.left) - parseFloat(moveIcon.style.left)), 2));
-        console.log(kyori);
+        var distanceMyIconToOther = Math.sqrt(Math.pow((parseFloat(mI.style.top) - parseFloat(moveIcon.style.top)), 2) + Math.pow((parseFloat(mI.style.left) - parseFloat(moveIcon.style.left)), 2));
+        console.log(distanceMyIconToOther);
         console.log(moveIcon);
         var remoteVideo = remoteVideos.querySelector(
           `[id="${id}"]`
         )
-        if (kyori <= 100) {
+        if (distanceMyIconToOther <= 100) {
           remoteVideo.volume = 1.0;
           console.log("100以下(VolumeMax)");
-        } else if (kyori >= 500){
+        } else if (distanceMyIconToOther >= 500){
           remoteVolume = 0.0;
           console.log("500以上(Volume0)");
         } else {
-          remoteVideo.volume = 100/kyori;   //double型で0~1
+          remoteVideo.volume = 100/distanceMyIconToOther;   //double型で0~1
           console.log(remoteVideo.volume);
         }
       }
