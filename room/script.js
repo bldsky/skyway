@@ -207,7 +207,7 @@ const Peer = window.Peer;
       var postTop = ((parseFloat(Hx) + 250) * 1.7) + "px";
       var postLeft = ((parseFloat(Hy) + 100) * 5) + "px";
 
-      var distancePreToPost = Math.sqrt(Math.pow(parseFloat(PostTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(PostLeft) - parseFloat(moveIcon.style.left), 2));
+      var distancePreToPost = Math.sqrt(Math.pow(parseFloat(postTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(postLeft) - parseFloat(moveIcon.style.left), 2));
 
       if (distancePreToPost >= 200) {
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
