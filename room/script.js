@@ -223,12 +223,15 @@ const Peer = window.Peer;
         var kyori = Math.sqrt(Math.pow((parseFloat(mI.style.top) - parseFloat(moveIcon.style.top)), 2) + Math.pow((parseFloat(mI.style.left) - parseFloat(moveIcon.style.left)), 2));
         console.log(kyori);
         console.log(moveIcon);
-        moveIcon.volume = 0;
+        var remoteVideo = remoteVideos.querySelector(
+          `[data-peer-id="${moveIcon.data-peerp-id}"]`
+        )
+        remoteVideo.volume = 0;
         if (kyori <= 100) {
-          moveIcon.volume = 1.0;
+          remoteVideo.volume = 1.0;
         } else {
-          moveIcon.volume = 100/kyori;   //double型で0~1
-          console.log(moveIcon.volume);
+          remoteVideo.volume = 100/kyori;   //double型で0~1
+          console.log(remoteVideo.volume);
         }
       }
     })
