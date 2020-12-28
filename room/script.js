@@ -225,7 +225,7 @@ const Peer = window.Peer;
         console.log(kyori);
         console.log(moveIcon);
         var remoteVideo = remoteVideos.querySelector(
-          `[data-peer-id="${moveIcon.data-peer-id}"]`
+          `[id="${id}"]`
         )
         console.log(moveIcon.data-peer-id);
         console.log(remoteVideo);
