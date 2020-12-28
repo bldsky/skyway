@@ -37,7 +37,7 @@
       <p class="meta" id="js-meta"></p>
     </div>
 
-    <script>
+    <!-- <script>
     let client = mqtt.connect('wss://test.mosquitto.org:8081');
     let topic = "floor1/room1"
     
@@ -76,6 +76,7 @@
         var mI = document.getElementsByClassName("myIcon")[0];
         var kyori = Math.sqrt(Math.pow((parseFloat(mI.style.top) - parseFloat(moveIcon.style.top)), 2) + Math.pow((parseFloat(mI.style.left) - parseFloat(moveIcon.style.left)), 2));
         console.log(kyori);
+        console.log(moveIcon);
         moveIcon.volume = 0;
         // if (kyori <= 100) {
         //   moveIcon.volume = 1.0;
@@ -85,7 +86,7 @@
         // }
       }
     })
-    </script>
+    </script> -->
     <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
     <script src="../shared/key.js"></script>
     <script src="./script.js"></script>
