@@ -185,7 +185,13 @@ const Peer = window.Peer;
       //   room.send([drag.style.left, drag.style.top]);
       // })
     //let client = mqtt.connect('wss://test.mosquitto.org:8081');
-    let client = mqtt.connect('wss://mqtt.uko.jp:8080', username: 'icecream', password: 'ByevJvgv');
+    var mqttOpt = {
+      clientId: 'testClientId',
+      username: 'icecream',
+      password: 'ByevJvgv',
+      keepalive: 300
+    };
+    let client = mqtt.connect('wss://mqtt.uko.jp:8080', mqttOpt);
     let topic = "floor1/room1"
     
     client.subscribe(topic);
