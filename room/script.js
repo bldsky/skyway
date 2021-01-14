@@ -191,7 +191,7 @@ const Peer = window.Peer;
       password: 'hLSdTBex5Y0d',
       keepalive: 300
     };
-    let client = mqtt.connect('fancy-electrician.cloudmqtt.com:8883', mqttOpt);
+    let client = mqtt.connect('wss://fancy-electrician.cloudmqtt.com:8883', mqttOpt);
     let topic = "floor1/room1"
     
     client.subscribe(topic);
