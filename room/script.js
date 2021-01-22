@@ -184,7 +184,7 @@ const Peer = window.Peer;
 
       //   room.send([drag.style.left, drag.style.top]);
       // })
-    let client = mqtt.connect('wss://fancy-electrician.cloudmqtt.com:8883');
+    // let client = mqtt.connect('wss://fancy-electrician.cloudmqtt.com:8883');
     var mqttOpt = {
       clientId: 'testClientId',
       username: 'gnqpnibj',
