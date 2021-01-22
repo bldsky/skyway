@@ -191,7 +191,7 @@ const Peer = window.Peer;
     //   password: 'hLSdTBex5Y0d',
     //   keepalive: 300
     // };
-    let client = mqtt.connect('wss://test.mosquitto.org:8081', mqttOpt);
+    let client = mqtt.connect('wss://test.mosquitto.org:8081');
     //let client = mqtt.connect('wss://kiuchi-mqtt-server.herokuapp.com:8883', mqttOpt);
     let topic = "floor1/room1"
     
