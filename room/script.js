@@ -192,7 +192,7 @@ const Peer = window.Peer;
       keepalive: 300
     };
     // let client = mqtt.connect('wss://test.mosquitto.org:8081', mqttOpt);
-    let client = mqtt.connect('wss://fancy-electrician.cloudmqtt.com:8883', mqttOpt);
+    let client = mqtt.connect('wss://fancy-electrician.cloudmqtt.com:443', mqttOpt);
     let topic = "floor1/room1"
     
     client.subscribe(topic);
