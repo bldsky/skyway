@@ -212,13 +212,14 @@ const Peer = window.Peer;
       console.log((parseFloat(Hy + 300) * 1.7));
       //console.log(moveIcon.style.top);
 
+      var accelerate = 0; //加速度
       var gazeTop = ((parseFloat(Hx) + 250) * 1.7) + "px";
       var gazeLeft = ((parseFloat(Hy) + 100) * 5) + "px";
 
       var distancePreToGaze = Math.sqrt(Math.pow(parseFloat(gazeTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(gazeLeft) - parseFloat(moveIcon.style.left), 2));
 
-      var postTop = ((parseFloat(gazeTop) - parseFloat(moveIcon.style.top))*0.4 + parseFloat(moveIcon.style.top)) + "px";
-      var postLeft = ((parseFloat(gazeLeft) - parseFloat(moveIcon.style.left))*0.4 + parseFloat(moveIcon.style.left)) + "px";
+      var postTop = ((parseFloat(gazeTop) - parseFloat(moveIcon.style.top))/distancePreToGaze + parseFloat(moveIcon.style.top)) + "px";
+      var postLeft = ((parseFloat(gazeLeft) - parseFloat(moveIcon.style.left))/distancePreToGaze + parseFloat(moveIcon.style.left)) + "px";
 
       if (distancePreToGaze >= 200) {
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
