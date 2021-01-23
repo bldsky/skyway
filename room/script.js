@@ -212,25 +212,28 @@ const Peer = window.Peer;
       console.log((parseFloat(Hy + 300) * 1.7));
       //console.log(moveIcon.style.top);
 
-      var postTop = ((parseFloat(Hx) + 250) * 1.7) + "px";
-      var postLeft = ((parseFloat(Hy) + 100) * 5) + "px";
+      var gazeTop = ((parseFloat(Hx) + 250) * 1.7) + "px";
+      var gazeLeft = ((parseFloat(Hy) + 100) * 5) + "px";
 
-      var distancePreToPost = Math.sqrt(Math.pow(parseFloat(postTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(postLeft) - parseFloat(moveIcon.style.left), 2));
+      var distancePreToGaze = Math.sqrt(Math.pow(parseFloat(gazeTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(gazeLeft) - parseFloat(moveIcon.style.left), 2));
 
-      if (distancePreToPost >= 200) {
+      var postTop = ((parseFloat(gazeTop) - parseFloat(moveIcon.style.top))*0.4 + parseFloat(moveIcon.style.top)) + "px";
+      var postLeft = ((parseFloat(gazeLeft) - parseFloat(moveIcon.style.left))*0.4 + parseFloat(moveIcon.style.left)) + "px";
+
+      if (distancePreToGaze >= 200) {
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
         moveIcon.style.top = "850px";
       } else if (((parseFloat(Hx) + 250) * 1.7) <= 0) {
         moveIcon.style.top = "0px";
       } else {
-        moveIcon.style.top = (((parseFloat(Hx) + 250) * 1.7) +"px" );
+        moveIcon.style.top = postTop;
       }
       if (((parseFloat(Hy) + 100) * 5) >= 1800) {
         moveIcon.style.left = "1800px";
       } else if (((parseFloat(Hy) + 100) * 5) <= 0) {
         moveIcon.style.left = "0px";
       } else {
-        moveIcon.style.left = (((parseFloat(Hy) + 100) * 5) + "px");
+        moveIcon.style.left = postLeft;
       }}
       console.log(moveIcon.className);
       if (moveIcon.className != "myIcon") {
