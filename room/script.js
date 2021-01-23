@@ -210,7 +210,7 @@ const Peer = window.Peer;
       var Hy = messages[2].split(':')[1];
       console.log(((parseFloat(Hx) + 250) * 1.7) + "px");
       console.log((parseFloat(Hy + 300) * 1.7));
-      console.log(moveIcon.style.top);
+      //console.log(moveIcon.style.top);
 
       var postTop = ((parseFloat(Hx) + 250) * 1.7) + "px";
       var postLeft = ((parseFloat(Hy) + 100) * 5) + "px";
