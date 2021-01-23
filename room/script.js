@@ -221,6 +221,8 @@ const Peer = window.Peer;
       var postTop = ((parseFloat(gazeTop) - parseFloat(moveIcon.style.top))/(distancePreToGaze/10) + parseFloat(moveIcon.style.top)) + "px";
       var postLeft = ((parseFloat(gazeLeft) - parseFloat(moveIcon.style.left))/(distancePreToGaze/10) + parseFloat(moveIcon.style.left)) + "px";
 
+      console.log(postTop);
+      console.log(postLeft);
       if (distancePreToGaze >= 200) {
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
         moveIcon.style.top = "850px";
