@@ -218,8 +218,8 @@ const Peer = window.Peer;
 
       var distancePreToGaze = Math.sqrt(Math.pow(parseFloat(gazeTop) - parseFloat(moveIcon.style.top), 2) + Math.pow(parseFloat(gazeLeft) - parseFloat(moveIcon.style.left), 2));
 
-      var postTop = ((parseFloat(gazeTop) - parseFloat(moveIcon.style.top))/distancePreToGaze + parseFloat(moveIcon.style.top)) + "px";
-      var postLeft = ((parseFloat(gazeLeft) - parseFloat(moveIcon.style.left))/distancePreToGaze + parseFloat(moveIcon.style.left)) + "px";
+      var postTop = ((parseFloat(gazeTop) - parseFloat(moveIcon.style.top))/(distancePreToGaze/3) + parseFloat(moveIcon.style.top)) + "px";
+      var postLeft = ((parseFloat(gazeLeft) - parseFloat(moveIcon.style.left))/(distancePreToGaze/3) + parseFloat(moveIcon.style.left)) + "px";
 
       if (distancePreToGaze >= 200) {
       if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
