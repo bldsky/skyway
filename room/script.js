@@ -29,6 +29,8 @@ const Peer = window.Peer;
   var x;
   var y;
 
+  var roomArray = {};
+
    meta.innerText = `
      UA: ${navigator.userAgent}
      SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
@@ -223,21 +225,54 @@ const Peer = window.Peer;
 
       console.log(postTop);
       console.log(postLeft);
+      // if (distancePreToGaze >= 200) {
+      // if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
+      //   moveIcon.style.top = "850px";
+      // } else if (((parseFloat(Hx) + 250) * 1.7) <= 0) {
+      //   moveIcon.style.top = "0px";
+      // } else {
+      //   moveIcon.style.top = postTop;
+      // }
+      // if (((parseFloat(Hy) + 100) * 5) >= 1800) {
+      //   moveIcon.style.left = "1800px";
+      // } else if (((parseFloat(Hy) + 100) * 5) <= 0) {
+      //   moveIcon.style.left = "0px";
+      // } else {
+      //   moveIcon.style.left = postLeft;
+      // }}
+
+      var tmpTop = "";
+      var tmpLeft = "";
       if (distancePreToGaze >= 200) {
-      if (((parseFloat(Hx) + 250) * 1.7) >= 850) {
-        moveIcon.style.top = "850px";
-      } else if (((parseFloat(Hx) + 250) * 1.7) <= 0) {
-        moveIcon.style.top = "0px";
-      } else {
-        moveIcon.style.top = postTop;
-      }
-      if (((parseFloat(Hy) + 100) * 5) >= 1800) {
-        moveIcon.style.left = "1800px";
-      } else if (((parseFloat(Hy) + 100) * 5) <= 0) {
-        moveIcon.style.left = "0px";
-      } else {
-        moveIcon.style.left = postLeft;
-      }}
+        if (parseFloat(gazeTop) >= 850) {
+          tmpTop = "850px";
+        } else if (parseFloat(gazeTop) >= 680) {
+          tmpTop = "680px";
+        } else if (parseFloat(gazeTop) >= 510) {
+          tmpTop = "510px";
+        } else if (parseFloat(gazeTop) >= 340) {
+          tmpTop = "340px";
+        } else if (parseFloat(gazeTop) >= 170) {
+          tmpTop = "170px";
+        } else {
+          tmpTop = "0px";
+        } 
+        if (parseFloat(gazeLeft) >= 1800) {
+          tmpLeft = "1800px";
+        } else if (parseFloat(gazeLeft) >= 1440) {
+          tmpLeft = "1440px";
+        } else if (parseFloat(gazeLeft) >= 1080) {
+          tmpLeft = "1080px";
+        } else if (parseFloat(gazeLeft) >= 720) {
+          tmpLeft = "720px";
+        } else if (parseFloat(gazeLeft) >= 360) {
+          tmpLeft = "360px";
+        } else {
+          tmpLeft = "0px";
+        }}
+        moveIcon.style.top = tmpTop;
+        moveIcon.style.left = tmpLeft;
+
       console.log(moveIcon.className);
       if (moveIcon.className != "myIcon") {
         var mI = document.getElementsByClassName("myIcon")[0];
