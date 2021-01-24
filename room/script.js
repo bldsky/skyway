@@ -270,6 +270,7 @@ const Peer = window.Peer;
         } else {
           tmpLeft = "0px";
         }}
+        console.log(tmpTop);
         moveIcon.style.top = tmpTop;
         moveIcon.style.left = tmpLeft;
 
