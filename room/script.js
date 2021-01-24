@@ -243,29 +243,35 @@ const Peer = window.Peer;
 
       var tmpTop = "";
       var tmpLeft = "";
-      if (parseFloat(gazeTop) >= 850) {
-        tmpTop = "850px";
-      } else if (parseFloat(gazeTop) >= 680) {
-        tmpTop = "680px";
-      } else if (parseFloat(gazeTop) >= 510) {
-        tmpTop = "510px";
-      } else if (parseFloat(gazeTop) >= 340) {
-        tmpTop = "340px";
-      } else if (parseFloat(gazeTop) >= 170) {
-        tmpTop = "170px";
+      if (parseFloat(gazeTop) >= 520) {
+        tmpTop = "520px";
+      } else if (parseFloat(gazeTop) >= 390) {
+        tmpTop = "390px";
+      } else if (parseFloat(gazeTop) >= 260) {
+        tmpTop = "260px";
+      } else if (parseFloat(gazeTop) >= 130) {
+        tmpTop = "130px";
       } else {
         tmpTop = "0px";
       } 
-      if (parseFloat(gazeLeft) >= 1800) {
-        tmpLeft = "1800px";
-      } else if (parseFloat(gazeLeft) >= 1440) {
-        tmpLeft = "1440px";
-      } else if (parseFloat(gazeLeft) >= 1080) {
-        tmpLeft = "1080px";
-      } else if (parseFloat(gazeLeft) >= 720) {
-        tmpLeft = "720px";
-      } else if (parseFloat(gazeLeft) >= 360) {
-        tmpLeft = "360px";
+      if (parseFloat(gazeLeft) >= 1170) {
+        tmpLeft = "1170px";
+      } else if (parseFloat(gazeLeft) >= 1040) {
+        tmpLeft = "1040px";
+      } else if (parseFloat(gazeLeft) >= 910) {
+        tmpLeft = "910px";
+      } else if (parseFloat(gazeLeft) >= 780) {
+        tmpLeft = "780px";
+      } else if (parseFloat(gazeLeft) >= 650) {
+        tmpLeft = "650px";
+      } else if (parseFloat(gazeLeft) >= 520) {
+        tmpLeft = "520px";
+      } else if (parseFloat(gazeLeft) >= 390) {
+        tmpLeft = "390px";
+      } else if (parseFloat(gazeLeft) >= 260) {
+        tmpLeft = "260px";
+      } else if (parseFloat(gazeLeft) >= 130) {
+        tmpLeft = "130px";
       } else {
         tmpLeft = "0px";
       }
