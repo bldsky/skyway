@@ -328,18 +328,18 @@ const Peer = window.Peer;
       }
         console.log(tmpTop);
         
-        if (roomArray["a"+tmpTop+tmpLeft] == off) { //同じ位置にアイコンが出ないように
-          roomArray["a"+tmpTop+tmpLeft] == moveIcon
-          moveIcon.style.top = tmpTop;
-          moveIcon.style.left = tmpLeft;
-          for (let key in roomArray) {
-            if (key != "a"+tmpTop+tmpLeft) {
-              if (roomArray[key] == moveIcon) {
-                roomArray[key] == "off";
-              }
-            } 
-          }
-        } 
+        // if (roomArray["a"+tmpTop+tmpLeft] == off) { //同じ位置にアイコンが出ないように
+        //   roomArray["a"+tmpTop+tmpLeft] == moveIcon
+        //   moveIcon.style.top = tmpTop;
+        //   moveIcon.style.left = tmpLeft;
+        //   for (let key in roomArray) {
+        //     if (key != "a"+tmpTop+tmpLeft) {
+        //       if (roomArray[key] == moveIcon) {
+        //         roomArray[key] == "off";
+        //       }
+        //     } 
+        //   }
+        // } 
         moveIcon.style.top = tmpTop;
         moveIcon.style.left = tmpLeft;
 
